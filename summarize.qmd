@@ -1,0 +1,161 @@
+---
+title: "Summarize"
+---
+
+## Module Learning Objectives
+
+By the end of this module, you will be able to:
+
+- <u>Describe</u> the purpose of the pipe operator (`%>%`)
+- <u>Use</u> the pipe operator (`%>%`) to chain multiple functions together
+- <u>Summarize</u> data by using `dplyr`'s `group_by` and `summarize` functions 
+
+```{r libraries-summarize, echo = F, message = F}
+library(tidyverse); library(palmerpenguins)
+```
+
+## Pipe Operator (`%>%`)
+
+Before diving into the `tidyverse` functions that allow for summarization and group-wise operations, let's talk about the pipe operator (`%>%`). The pipe is from the `magrittr` package and allows chaining together multiple functions without needing to create separate objects at each step as you would have to without the pipe.
+
+### `%>%` Example: Using the Pipe
+
+:::callout-note
+## Example
+
+As in the other chapters, let's use the "penguins" data object found in the `palmerpenguins` package. Let's say we want to keep only specimens that have a measurement for both bill length and bill depth and then remove the flipper and body mass columns.
+
+Without the pipe--but still using other `tidyverse` functions--we could go about this like this:
+```{r without-pipe, message = F}
+# Filter out the NAs
+penguins_v2 <- dplyr::filter(.data = penguins,
+                              !is.na(bill_length_mm) & !is.na(bill_depth_mm))
+
+# Now strip away the columns we don't want
+penguins_v3 <- dplyr::select(.data = penguins_v2, 
+                             -flipper_length_mm, -body_mass_g)
+
+# And we can look at our final product with `base::head`
+dplyr::glimpse(penguins_v3)
+```
+
+Using the pipe though we can simplify this code dramatically! Note that each of the following lines must end with the `%>%` so that R knows there are more lines to consider.
+```{r with-pipe, message = F}
+# We begin with the name of the data object
+penguins %>%
+  # Then we can filter the data
+  dplyr::filter(!is.na(bill_length_mm) & !is.na(bill_depth_mm)) %>%
+  # And strip away the columns we don't want
+  dplyr::select(-flipper_length_mm, -body_mass_g) %>%
+  # And we can even include the `glimpse` function to see our progress
+  dplyr::glimpse()
+```
+
+Note that using the pipe allows each line to inherit the data created by the previous line.
+:::
+
+### Challenge: `%>%`
+
+:::callout-important
+## Your Turn!
+
+Using pipes, `filter` the data to only include male penguins, `select` only the columns for species, island, and body mass, and `filter` out any rows with NA for body mass.
+:::
+
+### Aside: Fun History of Why `%>%` is a "Pipe"
+
+<img src="images/magrittr_hex.png" align="right" width="15%"/>
+
+The Belgian painter René Magritte famously created a painting titled "[The Treachery of Images](https://collections.lacma.org/node/239578)" featuring a depiction of a smoking pipe above the words "*Cest ci n'est pas une pipe*" (French for "This is not a pipe"). Magritte's point was about how the depiction of a thing is not equal to thing itself. The `magrittr` package takes its name from the painter because it also includes a pipe that functions slightly differently from a command line pipe and uses different characters. Just like Magritte's pipe, `%>%` both is and isn't a pipe!
+
+## Group-Wise Summarizing
+
+Now that we've covered the `%>%` operator we can use it to do group-wise summarization! Technically this summarization does not *require* the pipe but it does inherently have two steps and thus benefits from using the pipe to chain together those technically separate instructions.
+
+To summarize by groups we first define our groups using `dplyr`'s `group_by` function and then summarize using `summarize` (also from `dplyr`). `summarize` does require you to specify what calculations you want to perform within your groups though it uses similar syntax to `dplyr`'s `mutate` function.
+
+<img src="images/summarize-group-by.png" align="center" width="50%" />
+
+Despite the similarity in syntax between `summarize` and `mutate` there are a few crucial differences:
+
+- `summarize` returns only a single row per group while `mutate` returns as many rows as are in the original dataframe
+- `summarize` will automatically remove any columns that aren't either (1) included in `group_by` or (2) created by `summarize`. `mutate` cannot remove columns so it only creates whatever you tell it to.
+
+### `group_by` + `summarize` Example: Summarize within Groups
+
+:::callout-note
+## Example
+
+By using the `%>%` with `group_by` and `summarize`, we can calculate some summarized metric within our specified groups. To begin, let's find the average bill depth within each species of penguin.
+
+```{r group_by-summarize-basic, message = F}
+# Begin with the data and a pipe
+penguins %>%
+  # Group by the desired column names
+  dplyr::group_by(species) %>%
+  # And summarize in the way we desire
+  dplyr::summarize(mean_bill_dep_mm = mean(bill_depth_mm, na.rm = TRUE) )
+```
+
+Notice how the resulting dataframe only contains one row per value in the `group_by` call and only includes the grouping column and the column we created (`mean_bill_dep_mm`)? This reduction in dimensions is an inherent property of `summarize` and can be intensely valuable but be careful you don't accidentally remove columns that you want!
+:::
+
+### `group_by` + `summarize` Example: Calculate Multiple Metrics
+
+:::callout-note
+## Example
+
+Let's say we want to find *multiple* summary values for body mass of each species of penguin on each island. To accomplish this we can do the following:
+
+```{r group_by-summarize-complex, message = F}
+# Begin with the data and a pipe
+penguins %>%
+  # Group by the desired column names
+  dplyr::group_by(species, island) %>%
+  # And summarize in the way we desire
+  dplyr::summarize(
+    # Get average body mass
+    mean_mass_g = mean(body_mass_g, na.rm = TRUE),
+    # Get the standard deviation
+    sd_mass = sd(body_mass_g, na.rm = TRUE),
+    # Count the number of individual penguins of each species at each island
+    n_mass = dplyr::n(),
+    # Calculate standard error from SD divided by count
+    se_mass = sd_mass / sqrt(n_mass) )
+```
+
+You can see that we also invoked the `n` function from `dplyr` to return the size of each group. This function reads any groups created by `group_by` and returns the count of rows in the dataframe for each group level.
+
+Just like `mutate`, `summarize` will allow you to create as many columns as you want. So, if you want metrics calculated within your groups, you only need to define each of them within the `summarize` function.
+:::
+
+### Challenge: `summarize`
+
+:::callout-important
+## Your Turn!
+
+Using what we've covered so far, find the average flipper length in each year (regardless of any other grouping variable).
+:::
+
+## Grouping Cautionary Note
+
+`group_by` can be extremely useful in summarizing a dataframe or creating a new column without losing rows but you need to be careful. Objects created with `group_by` "remember" their groups until you change the groups or use the function `ungroup` from `dplyr`.
+
+Look at how the output of a grouped data object tells you the number of groups in the output (see beneath this code chunk).
+
+```{r group_by-grouping, message = F}
+penguins %>%
+  dplyr::group_by(species, island) %>%
+  dplyr::summarize(penguins_count = dplyr::n())
+```
+
+This means that all future uses of that pipe will continue to use the grouping established to create the "penguins_count" column. We can stop this by doing the same pipe, but adding `ungroup` after we're done using the grouping established by `group_by`.
+
+```{r ungroup, message = F}
+penguins %>%
+  dplyr::group_by(species, island) %>%
+  dplyr::summarize(penguins_count = dplyr::n()) %>%
+  dplyr::ungroup()
+```
+
+See? We calculated with our desired groups but then dropped the grouping structure once we were finished with them. Note also that if you use `group_by` and do some calculation then re-group by something else by using `group_by` *again*, the second use of `group_by` **will not be affected** by the first. This means that you only need one `ungroup` per pipe.
