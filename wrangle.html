@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="what-are-tidy-data" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-tidy-data">What are Tidy Data?</h2>
-<p>What are some common things you like to do with your data? Maybe remove rows or columns, do calculations and add the results as new columns? These operations (and others) are called “data wrangling”. The data we get to work with are rarely, if ever, in the format we need to do our analyses and data wrangling can help bridge that gap. <code>dplyr</code> and <code>tidyr</code> are two R packages from the <code>tidyverse</code> that provide a fairly complete and extremely powerful set of functions for us to do virtually all needed wrangling quickly. Here we introduce some commonly used functions from these two packages.</p>
+<p>What are some common things you like to do with your data? Maybe remove rows or columns, do calculations and add the results as new columns? These operations (and others) are called “data wrangling”. The data we get to work with are rarely, if ever, in the format we need to do our analyses and data wrangling can help bridge that gap. <code>dplyr</code> and <code>tidyr</code> are two R packages from the Tidyverse that provide a fairly complete and extremely powerful set of functions for us to do virtually all needed wrangling quickly. Here we introduce some commonly used functions from these two packages.</p>
 <p>We can use <code>glimpse</code> from the <code>dplyr</code> package to look at part of the data while also getting some relevant structural information (i.e., what type of data are in each column, etc.).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse", "palmerpenguins")</span></span>
@@ -330,7 +330,9 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <section id="selecting-columns" class="level2">
 <h2 class="anchored" data-anchor-id="selecting-columns">Selecting Columns</h2>
 <p>To start off, how do we do a fundamental action like selecting the columns we want? <code>dplyr</code>’s <code>select</code> function provides us with a straightforward way to do just that. We only need to provide the column names!</p>
-<p><img src="images/wrangle-select.png" align="center" width="50%"></p>
+<p align="center">
+<img src="images/wrangle-select.png" alt="Graphic of a dataframe with columns labeled 'A', 'B', and 'C' being pare down to just the 'A' column" width="50%">
+</p>
 <p>Note that even if you <code>select</code> just one column, a dataframe will be returned. Whereas if you use the <code>$</code> operator you get a vector (e.g., <code>data$column</code> returns a vector, not a dataframe).</p>
 <section id="select-example-including-excluding" class="level3">
 <h3 class="anchored" data-anchor-id="select-example-including-excluding"><code>select</code> Example: Including &amp; Excluding</h3>
@@ -447,10 +449,20 @@ $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 34
 <section id="subsetting-rows" class="level2">
 <h2 class="anchored" data-anchor-id="subsetting-rows">Subsetting Rows</h2>
 <p>Instead of selecting certain columns, how can we get a subset of rows that meet certain conditions? For example, in the diagram below, how can we filter for rows that contain a diamond shape? We can use <code>dplyr</code>’s handy <code>filter</code> function along with logical and boolean operators!</p>
-<p><img src="images/wrangle-filter.png" align="center" width="25%"></p>
+<p align="center">
+<img src="images/wrangle-filter.png" alt="Graphic of a table with only an 'A' column and rows with different shapes getting subsetted to only the row with a diamond" width="25%">
+</p>
 <p>For reference, here are the operators we can use to specify our conditions with <code>filter</code>.</p>
-<p><img src="images/wrangle-operators.png" align="center" width="90%"></p>
-<p>You may have noticed that <code>filter</code> accepts the same operators that base R’s <code>subset</code> function does. This is no accident and <code>filter</code> is one of the more accessible <code>tidyverse</code> functions because of the syntax it shares with its base R equivalent.</p>
+<ul>
+<li><code>==</code> – two items are exactly equal to one another</li>
+<li><code>!=</code> – two items are not equal to one another</li>
+<li><code>&lt;</code>/<code>&gt;</code> – one item is less/greater than the other</li>
+<li><code>&lt;=</code>/<code>&gt;=</code> – one item is less/greater than or equal to the other</li>
+<li><code>|</code> – one statement <em>or</em> another is <code>TRUE</code></li>
+<li><code>&amp;</code> – <em>both</em> statements are <code>TRUE</code></li>
+<li><code>%in%</code> – a value is in a set of other values</li>
+</ul>
+<p>You may have noticed that <code>filter</code> accepts the same operators that base R’s <code>subset</code> function does. This is no accident and <code>filter</code> is one of the more accessible Tidyverse functions because the syntax it shares with its base R equivalent.</p>
 <p>To get familiar with these operators, let’s see some examples!</p>
 <section id="filter-example-exactly-equal" class="level3">
 <h3 class="anchored" data-anchor-id="filter-example-exactly-equal"><code>filter</code> Example: Exactly Equal</h3>
@@ -645,7 +657,9 @@ Your Turn!
 <section id="making-and-modifying-columns" class="level2">
 <h2 class="anchored" data-anchor-id="making-and-modifying-columns">Making and Modifying Columns</h2>
 <p>Aside from selecting columns and subsetting rows, we may want to create new columns in our data. For instance, in the diagram below, we have a dataframe that only contains column A, and then we add new columns B and C. We can use <code>dplyr</code>’s <code>mutate</code> function to add a new column, while keeping the existing columns.</p>
-<p><img src="images/wrangle-mutate.png" align="center" width="50%"></p>
+<p align="center">
+<img src="images/wrangle-mutate.png" alt="Graphic of a table with an 'A' column gaining a 'B' and 'C' column" width="50%">
+</p>
 <p>The general syntax to add a new column to your dataframe is as follows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>your_data_v2 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">.data =</span> your_data, <span class="at">new_column_name =</span> what_it_contains)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -720,7 +734,7 @@ Example
 <section id="conditional-operations" class="level3">
 <h3 class="anchored" data-anchor-id="conditional-operations">Conditional Operations</h3>
 <p>Sometimes in data wrangling we’ll want to generate a new column where the contents of the column are dependent upon an existing column but we have many separate “if X then Y” type statements. Such statements are called “conditional” statements in programming. You may already be familiar with base R’s <code>ifelse</code> function for handling cases where you have an either/or condition.</p>
-<p>In the <code>tidyverse</code>–specifically <code>dplyr</code>–we have <code>case_when</code> for handling multiple conditions in an efficient and relatively straightforward way! Why are we talking about <code>case_when</code> here? Because you can use <code>case_when</code> inside of a <code>mutate</code> to create a new column based on the conditions that you specify.</p>
+<p>In the Tidyverse–specifically <code>dplyr</code>–we have <code>case_when</code> for handling multiple conditions in an efficient and relatively straightforward way! Why are we talking about <code>case_when</code> here? Because you can use <code>case_when</code> inside of a <code>mutate</code> to create a new column based on the conditions that you specify.</p>
 <p>Here is what the general syntax for this operation looks like:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>your_data_v2 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">.data =</span> your_data,</span>

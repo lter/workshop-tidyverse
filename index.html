@@ -241,12 +241,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a></li>
-  <li><a href="#programs-to-install" id="toc-programs-to-install" class="nav-link" data-scroll-target="#programs-to-install">Programs to Install</a>
+  <li><a href="#workshop-preparation" id="toc-workshop-preparation" class="nav-link" data-scroll-target="#workshop-preparation">Workshop Preparation</a>
   <ul class="collapse">
-  <li><a href="#r-rstudio" id="toc-r-rstudio" class="nav-link" data-scroll-target="#r-rstudio">R &amp; RStudio</a></li>
-  <li><a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages">R Packages</a></li>
+  <li><a href="#install-r" id="toc-install-r" class="nav-link" data-scroll-target="#install-r">1. Install R</a></li>
+  <li><a href="#install-rstudio" id="toc-install-rstudio" class="nav-link" data-scroll-target="#install-rstudio">2. Install RStudio</a></li>
+  <li><a href="#install-some-r-packages" id="toc-install-some-r-packages" class="nav-link" data-scroll-target="#install-some-r-packages">3. Install Some R Packages</a></li>
+  <li><a href="#celebrate" id="toc-celebrate" class="nav-link" data-scroll-target="#celebrate">4. Celebrate!</a></li>
   </ul></li>
-  <li><a href="#penguin-data" id="toc-penguin-data" class="nav-link" data-scroll-target="#penguin-data">Penguin Data</a></li>
+  <li><a href="#example-data---penguins" id="toc-example-data---penguins" class="nav-link" data-scroll-target="#example-data---penguins">Example Data - Penguins</a></li>
   <li><a href="#websites-to-visit" id="toc-websites-to-visit" class="nav-link" data-scroll-target="#websites-to-visit">Websites to Visit</a>
   <ul class="collapse">
   <li><a href="#supplemental-material" id="toc-supplemental-material" class="nav-link" data-scroll-target="#supplemental-material">Supplemental Material</a></li>
@@ -284,30 +286,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/logos/hex_tidyverse.png" alt="Hex logo for the Tidyverse R package" align="right" width="17%"></p>
 <p>To maximize the value of this workshop to you, we recommend that you take the following steps <strong>before the day of the workshop</strong>. If anything is unclear, feel free to reach out to us; our contact information can be found <a href="https://lter.github.io/scicomp/staff.html">here</a></p>
 </section>
-<section id="programs-to-install" class="level2">
-<h2 class="anchored" data-anchor-id="programs-to-install">Programs to Install</h2>
-<section id="r-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="r-rstudio">R &amp; RStudio</h3>
-<p><strong>Install <a href="https://www.r-project.org/">R</a> and its more convenient (in our opinion) user-interface: <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a></strong>.</p>
-<p>If you already have R, check that you have at least version 4.0.0 by running the following code:</p>
+<section id="workshop-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="workshop-preparation">Workshop Preparation</h2>
+<p><strong>For those of you with a dedicated IT team that has sole power to install software on your computer</strong>: you may need to contact them before the workshop to do the installation bits of the prep steps we outline below.</p>
+<section id="install-r" class="level3">
+<h3 class="anchored" data-anchor-id="install-r">1. Install R</h3>
+<p>Install <a href="https://www.r-project.org/">R</a>. If you already have R, check that you have at least version 4.0.0 by running the following code:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>version<span class="sc">$</span>version.string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If your version starts with a 3 (e.g., the above code returns “R version 3…”), please update R to make sure all packages behave as expected.</p>
 </section>
-<section id="r-packages" class="level3">
-<h3 class="anchored" data-anchor-id="r-packages">R Packages</h3>
+<section id="install-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="install-rstudio">2. Install RStudio</h3>
+<p>Once you have R (ver. ≥4.0), install <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>. If you already have RStudio installed, you may want to make sure that you’re using a recent version to take advantage of some quality of life improvements that are broadly useful.</p>
+</section>
+<section id="install-some-r-packages" class="level3">
+<h3 class="anchored" data-anchor-id="install-some-r-packages">3. Install Some R Packages</h3>
 <p><strong>Install the <code>tidyverse</code> and <code>palmerpenguins</code> R packages</strong> using the following code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"palmerpenguins"</span>))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"librarian"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>librarian<span class="sc">::</span><span class="fu">shelf</span>(tidyverse, palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Please run the above code even if you already have these packages</strong> to update these packages and ensure that your code aligns with the examples and challenges introduced during the workshop.</p>
 </section>
+<section id="celebrate" class="level3">
+<h3 class="anchored" data-anchor-id="celebrate">4. Celebrate!</h3>
+<p>After following all the previous preparation steps, your setup should now be complete.</p>
 </section>
-<section id="penguin-data" class="level2">
-<h2 class="anchored" data-anchor-id="penguin-data">Penguin Data</h2>
+</section>
+<section id="example-data---penguins" class="level2">
+<h2 class="anchored" data-anchor-id="example-data---penguins">Example Data - Penguins</h2>
 <p>The data we’ll be using for this workshop comes from the <code>palmerpenguins</code> package, maintained by <a href="https://allisonhorst.com/">Allison Horst</a>. The “penguins” dataset from this package contains size measurements for adult foraging penguins near Palmer Station, Antarctica. Data were collected and made available by Dr.&nbsp;Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program. Let’s take a look at it!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
