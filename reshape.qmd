@@ -50,7 +50,9 @@ Great! We can use this smaller data object to demonstrate reshaping more clearly
 
 `pivot_wider` takes long format data and reshapes it into wide format.
 
-<img src="images/reshape-pivot-wide.png" width="50%" />
+<p align="center">
+<img src="images/reshape-pivot-wide.png" alt="Graphic of a table with 'A' and 'B' columns being pivoted to a table with 'A', 'C', and 'D' columns and a 'B' row" width="50%" />
+</p>
 
 Let's say that we want to take that data object and reshape it into wide format so that each island is a column and each species of penguin is a row. The contents of each cell then are going to be the average bill length values that we just calculated.
 
@@ -77,7 +79,9 @@ Now that we have a small wide format data object, we can feed it to `pivot_longe
 
 `pivot_wider` on the other hand knows which columns to move around because you manually specify them in the "names_from" and "values_from" arguments.
 
-<img src="images/reshape-pivot-long.png" width="50%" />
+<p align="center">
+<img src="images/reshape-pivot-long.png" alt="Graphic of a table with 'A' and 'B' columns being pivoted to a table with 'C' and 'D' columns and 'A' and 'B' rows" width="50%" />
+</p>
 
 ```{r pivot_longer, message = F}
 # Begin with our wide data
