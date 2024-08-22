@@ -6,9 +6,9 @@ title: "Overview"
 
 This workshop provides an overview of many of the packages included in the Tidyverse suite of packages for the R programming language. The Tidyverse is a veritable universe of tools though that no single workshop could hope to cover so **we are focusing here on an introductory approach that focuses primarily on some fundamentals to tidying data in R**. We are always happy to improve workshop content so please don't hesitate to [post an Issue](https://github.com/lter/workshop-tidyverse/issues) on our GitHub repository if you see clear areas for improvement!
 
-<img src = "images/hex_tidyverse.png" align = "right" width = "17%" />
+<img src="images/logos/hex_tidyverse.png" alt="Hex logo for the Tidyverse R package" align="right" width="17%" />
 
-To maximize the value of this workshop to you, we recommend that you take the following steps **before the day of the workshop**. If anything is unclear, feel free to reach out to us; our contact information can be found in the "Content Creators" tab.
+To maximize the value of this workshop to you, we recommend that you take the following steps **before the day of the workshop**. If anything is unclear, feel free to reach out to us; our contact information can be found [here](https://lter.github.io/scicomp/staff.html)
 
 ## Programs to Install
 
@@ -38,7 +38,7 @@ library(palmerpenguins)
 
 ## Penguin Data
 
-The data we'll be using for this workshop comes from the `palmerpenguins` package, maintained by [Allison Horst](mailto:ahorst@ucsb.edu). The "penguins" dataset from this package contains size measurements for adult foraging penguins near Palmer Station, Antarctica. Data were collected and made available by Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program. Let's take a look at it!
+The data we'll be using for this workshop comes from the `palmerpenguins` package, maintained by [Allison Horst](https://allisonhorst.com/). The "penguins" dataset from this package contains size measurements for adult foraging penguins near Palmer Station, Antarctica. Data were collected and made available by Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program. Let's take a look at it!
 
 ```{r libraries-index, echo = F, message = F}
 library(tidyverse); library(palmerpenguins)
@@ -52,21 +52,14 @@ The "penguins" dataset has 344 rows and 8 columns.
 
 The columns are as follows:
 
-`species`: a factor denoting penguin species (Adélie, Chinstrap and Gentoo)
-
-`island`: a factor denoting island in Palmer Archipelago, Antarctica (Biscoe, Dream or Torgersen)
-
-`bill_length_mm`: a number denoting bill length (millimeters)
-
-`bill_depth_mm`: a number denoting bill depth (millimeters)
-
-`flipper_length_mm`: an integer denoting flipper length (millimeters)
-
-`body_mass_g`: an integer denoting body mass (grams)
-
-`sex`: a factor denoting penguin sex (female, male)
-
-`year`: an integer denoting the study year (2007, 2008, or 2009)
+- `species`: a factor denoting penguin species (Adélie, Chinstrap and Gentoo)
+- `island`: a factor denoting island in Palmer Archipelago, Antarctica (Biscoe, Dream or Torgersen)
+- `bill_length_mm`: a number denoting bill length (millimeters)
+- `bill_depth_mm`: a number denoting bill depth (millimeters)
+- `flipper_length_mm`: an integer denoting flipper length (millimeters)
+- `body_mass_g`: an integer denoting body mass (grams)
+- `sex`: a factor denoting penguin sex (female, male)
+- `year`: an integer denoting the study year (2007, 2008, or 2009)
 
 This dataset is an example of **tidy data**, which means that each **variable** is in its own **column** and each **observation** is in its own **row**. Generally speaking, functions from packages in the Tidyverse expect tidy data though they can be used in some cases to help get data into tidy format! Regardless, the penguins dataset is what we'll use for all examples in this workshop so be sure that you install the `palmerpenguins` R package. The examples on this page were adapted from [Allison Horst's `dplyr` tutorial](https://allisonhorst.shinyapps.io/dplyr-learnr/#section-welcome)!
 
