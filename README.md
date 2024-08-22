@@ -8,7 +8,7 @@ For teams that code using the R programming language, the most familiar tools ar
 
 The development of this training material is supported through the Long Term Ecological Research Network Office (LNO) (NSF award numbers 1545288 and 1929393) and the National Center for Ecological Analysis and Synthesis, UC Santa Barbara.
 
-**Citation:** Nick J Lyon, Angel Chen, and Julien Brun. 2023. Coding in the Tidyverse. LTER Network Office Scientific Computing Team.
+**Citation:** Nick J Lyon, Angel Chen, and Julien Brun. 2024. Coding in the Tidyverse. LTER Network Office Scientific Computing Team.
 
 <br>
 <hr>
