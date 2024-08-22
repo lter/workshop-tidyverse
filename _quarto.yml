@@ -15,15 +15,18 @@ website:
   sidebar:
     style: "docked"
     background: secondary
+    collapse-level: 2
     search: true
     contents: 
       - text: "Workshop Home"
         href: index.qmd
-      - wrangle.qmd
-      - summarize.qmd
-      - reshape.qmd
-      - join.qmd
-      - visualize.qmd
+      - section: "Modules"
+        contents: 
+         - href: wrangle.qmd
+         - href: summarize.qmd
+         - href: reshape.qmd
+         - href: join.qmd
+         - href: visualize.qmd
   navbar:
     background: primary
     right:
@@ -38,11 +41,11 @@ website:
       - icon: github
         href: https://github.com/lter/workshop-tidyverse
   page-footer:
-    center: "Copyright 2022, NCEAS"
+    center: "Copyright 2024, LTER Network Office"
     background: secondary
   margin-footer: |
-    <img src="images/nceas_logo_square.png" width="40%"/>
-    <img src="images/lter_logo_square.png" width="40%"/>
+    <img src="images/logos/logo_nceas.png" alt="Logo for the National Center for Ecological Analysis and Synthesis (NCEAS)" width="40%"/>
+    <img src="images/logos/logo_lter.png" alt="Logo for the Long Term Ecological Research (LTER) Network" width="40%"/>
 
 format:
   html:
