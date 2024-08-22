@@ -10,33 +10,44 @@ This workshop provides an overview of many of the packages included in the Tidyv
 
 To maximize the value of this workshop to you, we recommend that you take the following steps **before the day of the workshop**. If anything is unclear, feel free to reach out to us; our contact information can be found [here](https://lter.github.io/scicomp/staff.html)
 
-## Programs to Install
+## Workshop Preparation
 
-### R & RStudio
+**For those of you with a dedicated IT team that has sole power to install software on your computer**: you may need to contact them before the workshop to do the installation bits of the prep steps we outline below.
 
-**Install [R](https://www.r-project.org/) and its more convenient (in our opinion) user-interface: [RStudio](https://www.rstudio.com/products/rstudio/download/)**.
+### 1. Install R
 
-If you already have R, check that you have at least version 4.0.0 by running the following code:
+Install [R](https://www.r-project.org/). If you already have R, check that you have at least version 4.0.0 by running the following code:
 
-```{r check-r-version, eval = F}
+```{r check-r-version}
+#| eval: false
+
 version$version.string
 ```
 
 If your version starts with a 3 (e.g., the above code returns "R version 3..."), please update R to make sure all packages behave as expected.
 
-### R Packages
+### 2. Install RStudio
+
+Once you have R (ver. ≥4.0), install [RStudio](https://www.rstudio.com/products/rstudio/download/). If you already have RStudio installed, you may want to make sure that you're using a recent version to take advantage of some quality of life improvements that are broadly useful.
+
+### 3. Install Some R Packages
 
 **Install the `tidyverse` and `palmerpenguins` R packages** using the following code:
 
 ```{r install-packages, eval = F}
-install.packages(c("tidyverse", "palmerpenguins"))
-library(tidyverse)
-library(palmerpenguins)
+#| eval: false
+
+install.packages("librarian")
+librarian::shelf(tidyverse, palmerpenguins)
 ```
 
 **Please run the above code even if you already have these packages** to update these packages and ensure that your code aligns with the examples and challenges introduced during the workshop.
 
-## Penguin Data
+### 4. Celebrate!
+
+After following all the previous preparation steps, your setup should now be complete.
+
+## Example Data - Penguins
 
 The data we'll be using for this workshop comes from the `palmerpenguins` package, maintained by [Allison Horst](https://allisonhorst.com/). The "penguins" dataset from this package contains size measurements for adult foraging penguins near Palmer Station, Antarctica. Data were collected and made available by Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program. Let's take a look at it!
 
