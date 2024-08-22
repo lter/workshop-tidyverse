@@ -20,7 +20,7 @@ library(tidyverse); library(palmerpenguins)
 
 ## `ggplot2` Overview
 
-While the bulk of the `tidyverse` is focused on modifying a given data object, `ggplot2` is also a package in the `tidyverse` that is more concerned with--intuitively enough--*plotting* tidy data. `ggplot2` does share some syntax with the functions and packages that we've discussed so far but it also introduces some new elements that we'll discuss as we encounter them.
+While the bulk of the Tidyverse is focused on modifying a given data object, `ggplot2` is also a package in the Tidyverse that is more concerned with--intuitively enough--*plotting* tidy data. `ggplot2` does share some syntax with the functions and packages that we've discussed so far but it also introduces some new elements that we'll discuss as we encounter them.
 
 ## Creating a Plot
 
@@ -46,7 +46,7 @@ Now that we have a baseline plot, we can add desired geometries using the `geom_
 
 ### Geometry Aside No. 1 - Adding Plot Elements
 
-You may have noticed that the core plot is built with `ggplot` and `aes` but each subsequent component is added with one of the `geom_...` functions and realized the gap we haven't talked about yet: how do we combine these separate lines of code? The answer is part of what makes `ggplot` different from the rest of the `tidyverse`. In the rest of the `tidyverse` we chain together multiple lines of code with the `%>%` operator, however, **in `ggplot2` we use `+` to combine separate lines of code.**
+You may have noticed that the core plot is built with `ggplot` and `aes` but each subsequent component is added with one of the `geom_...` functions and realized the gap we haven't talked about yet: how do we combine these separate lines of code? The answer is part of what makes `ggplot` different from the rest of the Tidyverse. In the rest of the Tidyverse we chain together multiple lines of code with the `%>%` operator, however, **in `ggplot2` we use `+` to combine separate lines of code.**
 
 This has a distinct advantage that we'll discuss later but we'll use the `+` in the following example to show its use.
 

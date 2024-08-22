@@ -15,7 +15,7 @@ library(tidyverse); library(palmerpenguins)
 
 ## Combining data
 
-Now that we know how to manipulate a single dataframe, how do we manipulate multiple dataframes? If we have multiple sources of data and we want to combine them together into one dataframe or table, we can **join** them through any shared column(s)! Data you'll be joining can be called "relational data", because there is some kind of relationship between the dataframes that you’ll be leveraging. In the `tidyverse`, combining data that has a relationship is called "joining". Let's look at some of `dplyr`'s many `join` functions!
+Now that we know how to manipulate a single dataframe, how do we manipulate multiple dataframes? If we have multiple sources of data and we want to combine them together into one dataframe or table, we can **join** them through any shared column(s)! Data you'll be joining can be called "relational data", because there is some kind of relationship between the dataframes that you’ll be leveraging. In the Tidyverse, combining data that has a relationship is called "joining". Let's look at some of `dplyr`'s many `join` functions!
 
 In each of the following `join` functions, you provide two dataframes, the one you arbitrarily provide first is called the "left" dataframe while the other is called the "right" dataframe. This is important because each of the different `join` functions brings the columns from one of the dataframes into the other depending on (1) which dataframe is left and which is right and (2) what type of `join` you specify.
 
@@ -56,7 +56,9 @@ Also, note that if column names include spaces (as in `Individual ID` and `Date 
 
 In a `left_join`, we bring the columns from the right dataframe that match rows found in the specified column(s) of the left dataframe.
 
-<img src="images/join-left.png" align="center" width="50%" />
+<p align="center">
+<img src="images/join-left.png" alt="Graphic showing a left join" width="50%" />
+</p>
 
 We can specify the column that we want to join based on with `by = ...`. If we don't provide this argument, then `dplyr` will automatically join on **all** matching columns between the left and right dataframes. In our case, we want to `left_join` by `record_number`.
 
@@ -81,7 +83,9 @@ What we have in the end is `penguins_left_joined`, a dataframe with information 
 
 In a `right_join`, we bring rows from the left dataframe into the right dataframe based on the values in the specified column(s) of the right dataframe.
 
-<img src="images/join-right.png" align="center" width="50%" />
+<p align="center">
+<img src="images/join-right.png" alt="Graphic showing a right join" width="50%" />
+</p>
 
 As the names imply, a `right_join` is the opposite of a `left_join`.
 :::
@@ -93,7 +97,9 @@ As the names imply, a `right_join` is the opposite of a `left_join`.
 
 In an `inner_join`, we keep only the rows where the values in the column we are joining `by` are found in both dataframes. 
 
-<img src="images/join-inner.png" align="center" width="50%" />
+<p align="center">
+<img src="images/join-inner.png" alt="Graphic showing an inner join" width="50%" />
+</p>
 
 This can be really useful when one of the dataframes includes supplementary data that has incomplete coverage on the other dataframe and you want to simultaneously combine the dataframes and remove the inevitable `NA`s that will be created.
 
@@ -111,7 +117,9 @@ Note that in an `inner_join` it doesn't matter which dataframe is "left" and whi
 
 In a `full_join`, we keep all values and all rows. 
 
-<img src="images/join-full.png" align="center" width="50%" />
+<p align="center">
+<img src="images/join-full.png" alt="Graphic showing a full join" width="50%" />
+</p>
 
 A `full_join` is "smart" enough to fill with `NA`s in all rows that don't match between the two dataframes. Also, just like an `inner_join`, a `full_join` doesn't care about which dataframe is "left" and which is "right" because all columns are getting combined regardless of which is left vs. right.
 :::
@@ -123,7 +131,9 @@ A `full_join` is "smart" enough to fill with `NA`s in all rows that don't match 
 
 In an `anti_join`, we return rows of the left dataframe that do not have a match in the right dataframe. This can be used to see what will **not** be included in a join. 
 
-<img src="images/join-anti.png" align="center" width="50%" />
+<p align="center">
+<img src="images/join-anti.png" alt="Graphic showing an anti join" width="50%" />
+</p>
 
 One case where an `anti_join` is particularly useful is that of "text mining" where you have one dataframe with a column of individual words that you've split apart from a larger block of free text. If you also have a dataframe of one column that contains words that you want to remove from your "actual" data (e.g., "and", "not", "I", "me", etc.), you can `anti_join` the two dataframes to quickly remove all of those unwanted words from your text mining dataframe.
 :::
