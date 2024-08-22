@@ -12,7 +12,7 @@ By the end of this module, you will be able to:
 
 ## What are Tidy Data?
 
-What are some common things you like to do with your data? Maybe remove rows or columns, do calculations and add the results as new columns? These operations (and others) are called "data wrangling". The data we get to work with are rarely, if ever, in the format we need to do our analyses and data wrangling can help bridge that gap. `dplyr` and `tidyr` are two R packages from the `tidyverse` that provide a fairly complete and extremely powerful set of functions for us to do virtually all needed wrangling quickly. Here we introduce some commonly used functions from these two packages.
+What are some common things you like to do with your data? Maybe remove rows or columns, do calculations and add the results as new columns? These operations (and others) are called "data wrangling". The data we get to work with are rarely, if ever, in the format we need to do our analyses and data wrangling can help bridge that gap. `dplyr` and `tidyr` are two R packages from the Tidyverse that provide a fairly complete and extremely powerful set of functions for us to do virtually all needed wrangling quickly. Here we introduce some commonly used functions from these two packages.
 
 We can use `glimpse` from the `dplyr` package to look at part of the data while also getting some relevant structural information (i.e., what type of data are in each column, etc.).
 
@@ -28,7 +28,9 @@ dplyr::glimpse(penguins)
 
 To start off, how do we do a fundamental action like selecting the columns we want? `dplyr`'s `select` function provides us with a straightforward way to do just that. We only need to provide the column names!
 
-<img src="images/wrangle-select.png" align="center" width="50%"/>
+<p align="center">
+<img src="images/wrangle-select.png" alt="Graphic of a dataframe with columns labeled 'A', 'B', and 'C' being pare down to just the 'A' column" width="50%"/>
+</p>
 
 Note that even if you `select` just one column, a dataframe will be returned. Whereas if you use the `$` operator you get a vector (e.g., `data$column` returns a vector, not a dataframe).
 
@@ -96,13 +98,21 @@ Conveniently selecting a range of columns can be especially useful when you have
 
 Instead of selecting certain columns, how can we get a subset of rows that meet certain conditions? For example, in the diagram below, how can we filter for rows that contain a diamond shape? We can use `dplyr`'s handy `filter` function along with logical and boolean operators!
 
-<img src="images/wrangle-filter.png" align="center" width="25%"/>
+<p align="center">
+<img src="images/wrangle-filter.png" alt="Graphic of a table with only an 'A' column and rows with different shapes getting subsetted to only the row with a diamond" width="25%"/>
+</p>
 
 For reference, here are the operators we can use to specify our conditions with `filter`.
 
-<img src="images/wrangle-operators.png" align="center" width="90%"/>
+- `==` -- two items are exactly equal to one another
+- `!=` -- two items are not equal to one another 
+- `<`/`>` -- one item is less/greater than the other 
+- `<=`/`>=` -- one item is less/greater than or equal to the other 
+- `|` -- one statement _or_ another is `TRUE`
+- `&` -- _both_ statements are `TRUE`
+- `%in%` -- a value is in a set of other values
 
-You may have noticed that `filter` accepts the same operators that base R's `subset` function does. This is no accident and `filter` is one of the more accessible `tidyverse` functions because of the syntax it shares with its base R equivalent.
+You may have noticed that `filter` accepts the same operators that base R's `subset` function does. This is no accident and `filter` is one of the more accessible Tidyverse functions because the syntax it shares with its base R equivalent.
 
 To get familiar with these operators, let's see some examples!
 
@@ -211,7 +221,9 @@ Using `filter`, how would you get all of the rows that **do not** have any `NA` 
 
 Aside from selecting columns and subsetting rows, we may want to create new columns in our data. For instance, in the diagram below, we have a dataframe that only contains column A, and then we add new columns B and C. We can use `dplyr`'s `mutate` function to add a new column, while keeping the existing columns.
 
-<img src="images/wrangle-mutate.png" align="center" width="50%"/>
+<p align="center">
+<img src="images/wrangle-mutate.png" alt="Graphic of a table with an 'A' column gaining a 'B' and 'C' column" width="50%"/>
+</p>
 
 The general syntax to add a new column to your dataframe is as follows:
 
@@ -259,7 +271,7 @@ Now `island` is a character column!
 
 Sometimes in data wrangling we'll want to generate a new column where the contents of the column are dependent upon an existing column but we have many separate "if X then Y" type statements. Such statements are called "conditional" statements in programming. You may already be familiar with base R's `ifelse` function for handling cases where you have an either/or condition.
 
-In the `tidyverse`--specifically `dplyr`--we have `case_when` for handling multiple conditions in an efficient and relatively straightforward way! Why are we talking about `case_when` here? Because you can use `case_when` inside of a `mutate` to create a new column based on the conditions that you specify.
+In the Tidyverse--specifically `dplyr`--we have `case_when` for handling multiple conditions in an efficient and relatively straightforward way! Why are we talking about `case_when` here? Because you can use `case_when` inside of a `mutate` to create a new column based on the conditions that you specify.
 
 Here is what the general syntax for this operation looks like:
 
