@@ -288,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="combining-data" class="level2">
 <h2 class="anchored" data-anchor-id="combining-data">Combining data</h2>
-<p>Now that we know how to manipulate a single dataframe, how do we manipulate multiple dataframes? If we have multiple sources of data and we want to combine them together into one dataframe or table, we can <strong>join</strong> them through any shared column(s)! Data you’ll be joining can be called “relational data”, because there is some kind of relationship between the dataframes that you’ll be leveraging. In the <code>tidyverse</code>, combining data that has a relationship is called “joining”. Let’s look at some of <code>dplyr</code>’s many <code>join</code> functions!</p>
+<p>Now that we know how to manipulate a single dataframe, how do we manipulate multiple dataframes? If we have multiple sources of data and we want to combine them together into one dataframe or table, we can <strong>join</strong> them through any shared column(s)! Data you’ll be joining can be called “relational data”, because there is some kind of relationship between the dataframes that you’ll be leveraging. In the Tidyverse, combining data that has a relationship is called “joining”. Let’s look at some of <code>dplyr</code>’s many <code>join</code> functions!</p>
 <p>In each of the following <code>join</code> functions, you provide two dataframes, the one you arbitrarily provide first is called the “left” dataframe while the other is called the “right” dataframe. This is important because each of the different <code>join</code> functions brings the columns from one of the dataframes into the other depending on (1) which dataframe is left and which is right and (2) what type of <code>join</code> you specify.</p>
 <p>This becomes somewhat more intuitive when looking at tangible examples so let’s prepare some data to <code>join</code> in different ways!</p>
 <section id="join-data-preparation" class="level3">
@@ -348,7 +348,9 @@ Example
 </div>
 <div class="callout-body-container callout-body">
 <p>In a <code>left_join</code>, we bring the columns from the right dataframe that match rows found in the specified column(s) of the left dataframe.</p>
-<p><img src="images/join-left.png" align="center" width="50%"></p>
+<p align="center">
+<img src="images/join-left.png" alt="Graphic showing a left join" width="50%">
+</p>
 <p>We can specify the column that we want to join based on with <code>by = ...</code>. If we don’t provide this argument, then <code>dplyr</code> will automatically join on <strong>all</strong> matching columns between the left and right dataframes. In our case, we want to <code>left_join</code> by <code>record_number</code>.</p>
 <p>To better demonstrate that only rows found in the left dataframe will be joined from the right dataframe, we’ll use the pipe <code>%&gt;%</code> to <code>filter</code> the left dataframe before <code>join</code>ing.</p>
 <div class="cell">
@@ -392,7 +394,9 @@ Example
 </div>
 <div class="callout-body-container callout-body">
 <p>In a <code>right_join</code>, we bring rows from the left dataframe into the right dataframe based on the values in the specified column(s) of the right dataframe.</p>
-<p><img src="images/join-right.png" align="center" width="50%"></p>
+<p align="center">
+<img src="images/join-right.png" alt="Graphic showing a right join" width="50%">
+</p>
 <p>As the names imply, a <code>right_join</code> is the opposite of a <code>left_join</code>.</p>
 </div>
 </div>
@@ -410,7 +414,9 @@ Example
 </div>
 <div class="callout-body-container callout-body">
 <p>In an <code>inner_join</code>, we keep only the rows where the values in the column we are joining <code>by</code> are found in both dataframes.</p>
-<p><img src="images/join-inner.png" align="center" width="50%"></p>
+<p align="center">
+<img src="images/join-inner.png" alt="Graphic showing an inner join" width="50%">
+</p>
 <p>This can be really useful when one of the dataframes includes supplementary data that has incomplete coverage on the other dataframe and you want to simultaneously combine the dataframes and remove the inevitable <code>NA</code>s that will be created.</p>
 <p>For example, imagine that you have a dataframe of 100 study sites with information on plant growth and a second dataframe of soil chemistry information. Your grant budget was really tight though so you needed to prioritize sample processing and you only have soil chemistry for 20 of the sites where you have plant growth data.</p>
 <p>If you use <code>inner_join</code> on your plant growth and soil chemistry datasets, you will create a single dataframe with both chemistry and plant data that only has the sites (i.e., rows) where you had data for both. This dataframe then would likely be ready for analysis because you’d have complete data for every site in the new <code>join</code>ed dataframe!</p>
@@ -431,7 +437,9 @@ Example
 </div>
 <div class="callout-body-container callout-body">
 <p>In a <code>full_join</code>, we keep all values and all rows.</p>
-<p><img src="images/join-full.png" align="center" width="50%"></p>
+<p align="center">
+<img src="images/join-full.png" alt="Graphic showing a full join" width="50%">
+</p>
 <p>A <code>full_join</code> is “smart” enough to fill with <code>NA</code>s in all rows that don’t match between the two dataframes. Also, just like an <code>inner_join</code>, a <code>full_join</code> doesn’t care about which dataframe is “left” and which is “right” because all columns are getting combined regardless of which is left vs.&nbsp;right.</p>
 </div>
 </div>
@@ -449,7 +457,9 @@ Example
 </div>
 <div class="callout-body-container callout-body">
 <p>In an <code>anti_join</code>, we return rows of the left dataframe that do not have a match in the right dataframe. This can be used to see what will <strong>not</strong> be included in a join.</p>
-<p><img src="images/join-anti.png" align="center" width="50%"></p>
+<p align="center">
+<img src="images/join-anti.png" alt="Graphic showing an anti join" width="50%">
+</p>
 <p>One case where an <code>anti_join</code> is particularly useful is that of “text mining” where you have one dataframe with a column of individual words that you’ve split apart from a larger block of free text. If you also have a dataframe of one column that contains words that you want to remove from your “actual” data (e.g., “and”, “not”, “I”, “me”, etc.), you can <code>anti_join</code> the two dataframes to quickly remove all of those unwanted words from your text mining dataframe.</p>
 </div>
 </div>

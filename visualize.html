@@ -320,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="ggplot2-overview" class="level2">
 <h2 class="anchored" data-anchor-id="ggplot2-overview"><code>ggplot2</code> Overview</h2>
-<p>While the bulk of the <code>tidyverse</code> is focused on modifying a given data object, <code>ggplot2</code> is also a package in the <code>tidyverse</code> that is more concerned with–intuitively enough–<em>plotting</em> tidy data. <code>ggplot2</code> does share some syntax with the functions and packages that we’ve discussed so far but it also introduces some new elements that we’ll discuss as we encounter them.</p>
+<p>While the bulk of the Tidyverse is focused on modifying a given data object, <code>ggplot2</code> is also a package in the Tidyverse that is more concerned with–intuitively enough–<em>plotting</em> tidy data. <code>ggplot2</code> does share some syntax with the functions and packages that we’ve discussed so far but it also introduces some new elements that we’ll discuss as we encounter them.</p>
 </section>
 <section id="creating-a-plot" class="level2">
 <h2 class="anchored" data-anchor-id="creating-a-plot">Creating a Plot</h2>
@@ -356,7 +356,7 @@ Example
 <p>Now that we have a baseline plot, we can add desired geometries using the <code>geom_...</code> family of functions. Broadly speaking, there is one <code>geom_...</code> for every possible way of plotting your data. Want to make a scatter plot? Use <code>geom_point</code>. Bar plot? <code>geom_bar</code>. Add a best-fit line? <code>geom_smooth</code>. When you first begin making plots with <code>ggplot2</code> you will likely have to Google which <code>geom_...</code> you want (that was certainly what the creators of this workshop did when we started out!) but over time you’ll remember them more and more clearly.</p>
 <section id="geometry-aside-no.-1---adding-plot-elements" class="level3">
 <h3 class="anchored" data-anchor-id="geometry-aside-no.-1---adding-plot-elements">Geometry Aside No.&nbsp;1 - Adding Plot Elements</h3>
-<p>You may have noticed that the core plot is built with <code>ggplot</code> and <code>aes</code> but each subsequent component is added with one of the <code>geom_...</code> functions and realized the gap we haven’t talked about yet: how do we combine these separate lines of code? The answer is part of what makes <code>ggplot</code> different from the rest of the <code>tidyverse</code>. In the rest of the <code>tidyverse</code> we chain together multiple lines of code with the <code>%&gt;%</code> operator, however, <strong>in <code>ggplot2</code> we use <code>+</code> to combine separate lines of code.</strong></p>
+<p>You may have noticed that the core plot is built with <code>ggplot</code> and <code>aes</code> but each subsequent component is added with one of the <code>geom_...</code> functions and realized the gap we haven’t talked about yet: how do we combine these separate lines of code? The answer is part of what makes <code>ggplot</code> different from the rest of the Tidyverse. In the rest of the Tidyverse we chain together multiple lines of code with the <code>%&gt;%</code> operator, however, <strong>in <code>ggplot2</code> we use <code>+</code> to combine separate lines of code.</strong></p>
 <p>This has a distinct advantage that we’ll discuss later but we’ll use the <code>+</code> in the following example to show its use.</p>
 </section>
 <section id="geom_...-example-adding-a-geometry" class="level3">

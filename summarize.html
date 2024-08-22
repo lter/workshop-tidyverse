@@ -292,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="pipe-operator" class="level2">
 <h2 class="anchored" data-anchor-id="pipe-operator">Pipe Operator (<code>%&gt;%</code>)</h2>
-<p>Before diving into the <code>tidyverse</code> functions that allow for summarization and group-wise operations, let’s talk about the pipe operator (<code>%&gt;%</code>). The pipe is from the <code>magrittr</code> package and allows chaining together multiple functions without needing to create separate objects at each step as you would have to without the pipe.</p>
+<p>Before diving into the Tidyverse functions that allow for summarization and group-wise operations, let’s talk about the pipe operator (<code>%&gt;%</code>). The pipe is from the <code>magrittr</code> package and allows chaining together multiple functions without needing to create separate objects at each step as you would have to without the pipe.</p>
 <section id="example-using-the-pipe" class="level3">
 <h3 class="anchored" data-anchor-id="example-using-the-pipe"><code>%&gt;%</code> Example: Using the Pipe</h3>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -306,7 +306,7 @@ Example
 </div>
 <div class="callout-body-container callout-body">
 <p>As in the other chapters, let’s use the “penguins” data object found in the <code>palmerpenguins</code> package. Let’s say we want to keep only specimens that have a measurement for both bill length and bill depth and then remove the flipper and body mass columns.</p>
-<p>Without the pipe–but still using other <code>tidyverse</code> functions–we could go about this like this:</p>
+<p>Without the pipe–but still using other Tidyverse functions–we could go about this like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out the NAs</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>penguins_v2 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="at">.data =</span> penguins,</span>
@@ -372,7 +372,7 @@ Your Turn!
 </section>
 <section id="aside-fun-history-of-why-is-a-pipe" class="level3">
 <h3 class="anchored" data-anchor-id="aside-fun-history-of-why-is-a-pipe">Aside: Fun History of Why <code>%&gt;%</code> is a “Pipe”</h3>
-<p><img src="images/magrittr_hex.png" align="right" width="15%"></p>
+<p><img src="images/logos/hex_magrittr.png" alt="Hex logo for the 'magrittr' R package" align="right" width="15%"></p>
 <p>The Belgian painter René Magritte famously created a painting titled “<a href="https://collections.lacma.org/node/239578">The Treachery of Images</a>” featuring a depiction of a smoking pipe above the words “<em>Cest ci n’est pas une pipe</em>” (French for “This is not a pipe”). Magritte’s point was about how the depiction of a thing is not equal to thing itself. The <code>magrittr</code> package takes its name from the painter because it also includes a pipe that functions slightly differently from a command line pipe and uses different characters. Just like Magritte’s pipe, <code>%&gt;%</code> both is and isn’t a pipe!</p>
 </section>
 </section>
@@ -380,7 +380,9 @@ Your Turn!
 <h2 class="anchored" data-anchor-id="group-wise-summarizing">Group-Wise Summarizing</h2>
 <p>Now that we’ve covered the <code>%&gt;%</code> operator we can use it to do group-wise summarization! Technically this summarization does not <em>require</em> the pipe but it does inherently have two steps and thus benefits from using the pipe to chain together those technically separate instructions.</p>
 <p>To summarize by groups we first define our groups using <code>dplyr</code>’s <code>group_by</code> function and then summarize using <code>summarize</code> (also from <code>dplyr</code>). <code>summarize</code> does require you to specify what calculations you want to perform within your groups though it uses similar syntax to <code>dplyr</code>’s <code>mutate</code> function.</p>
-<p><img src="images/summarize-group-by.png" align="center" width="50%"></p>
+<p align="center">
+<img src="images/summarize-group-by.png" alt="Graphic of a table with an 'A' and 'B' column where the 'A' column contains one of two shapes becoming a smaller table with one row per type of shape and an 'A' and 'C' column" width="50%">
+</p>
 <p>Despite the similarity in syntax between <code>summarize</code> and <code>mutate</code> there are a few crucial differences:</p>
 <ul>
 <li><code>summarize</code> returns only a single row per group while <code>mutate</code> returns as many rows as are in the original dataframe</li>
