@@ -16,7 +16,7 @@ library(tidyverse); library(palmerpenguins)
 
 ## Pipe Operator (`%>%`)
 
-Before diving into the `tidyverse` functions that allow for summarization and group-wise operations, let's talk about the pipe operator (`%>%`). The pipe is from the `magrittr` package and allows chaining together multiple functions without needing to create separate objects at each step as you would have to without the pipe.
+Before diving into the Tidyverse functions that allow for summarization and group-wise operations, let's talk about the pipe operator (`%>%`). The pipe is from the `magrittr` package and allows chaining together multiple functions without needing to create separate objects at each step as you would have to without the pipe.
 
 ### `%>%` Example: Using the Pipe
 
@@ -25,7 +25,8 @@ Before diving into the `tidyverse` functions that allow for summarization and gr
 
 As in the other chapters, let's use the "penguins" data object found in the `palmerpenguins` package. Let's say we want to keep only specimens that have a measurement for both bill length and bill depth and then remove the flipper and body mass columns.
 
-Without the pipe--but still using other `tidyverse` functions--we could go about this like this:
+Without the pipe--but still using other Tidyverse functions--we could go about this like this:
+
 ```{r without-pipe, message = F}
 # Filter out the NAs
 penguins_v2 <- dplyr::filter(.data = penguins,
@@ -64,7 +65,7 @@ Using pipes, `filter` the data to only include male penguins, `select` only the 
 
 ### Aside: Fun History of Why `%>%` is a "Pipe"
 
-<img src="images/magrittr_hex.png" align="right" width="15%"/>
+<img src="images/logos/hex_magrittr.png" alt="Hex logo for the 'magrittr' R package" align="right" width="15%"/>
 
 The Belgian painter René Magritte famously created a painting titled "[The Treachery of Images](https://collections.lacma.org/node/239578)" featuring a depiction of a smoking pipe above the words "*Cest ci n'est pas une pipe*" (French for "This is not a pipe"). Magritte's point was about how the depiction of a thing is not equal to thing itself. The `magrittr` package takes its name from the painter because it also includes a pipe that functions slightly differently from a command line pipe and uses different characters. Just like Magritte's pipe, `%>%` both is and isn't a pipe!
 
@@ -74,7 +75,9 @@ Now that we've covered the `%>%` operator we can use it to do group-wise summari
 
 To summarize by groups we first define our groups using `dplyr`'s `group_by` function and then summarize using `summarize` (also from `dplyr`). `summarize` does require you to specify what calculations you want to perform within your groups though it uses similar syntax to `dplyr`'s `mutate` function.
 
-<img src="images/summarize-group-by.png" align="center" width="50%" />
+<p align="center">
+<img src="images/summarize-group-by.png" alt="Graphic of a table with an 'A' and 'B' column where the 'A' column contains one of two shapes becoming a smaller table with one row per type of shape and an 'A' and 'C' column" width="50%" />
+</p>
 
 Despite the similarity in syntax between `summarize` and `mutate` there are a few crucial differences:
 
