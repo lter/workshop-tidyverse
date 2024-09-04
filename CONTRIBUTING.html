@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reshape – SciComp Workshop - Coding in the Tidyverse</title>
+<title>contributing – SciComp Workshop - Coding in the Tidyverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -105,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="Reshape – SciComp Workshop - Coding in the Tidyverse">
+<meta name="twitter:title" content="SciComp Workshop - Coding in the Tidyverse">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -159,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./wrangle.html">Modules</a></li><li class="breadcrumb-item"><a href="./reshape.html">Reshape</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -208,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./reshape.html" class="sidebar-item-text sidebar-link active">
+  <a href="./reshape.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reshape</span></a>
   </div>
 </li>
@@ -236,14 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#module-learning-objectives" id="toc-module-learning-objectives" class="nav-link active" data-scroll-target="#module-learning-objectives">Module Learning Objectives</a></li>
-  <li><a href="#defining-shape" id="toc-defining-shape" class="nav-link" data-scroll-target="#defining-shape">Defining “Shape”</a></li>
-  <li><a href="#reshaping-data" id="toc-reshaping-data" class="nav-link" data-scroll-target="#reshaping-data">Reshaping Data</a>
-  <ul class="collapse">
-  <li><a href="#pivot_wider-example-reshaping-to-wide-format" id="toc-pivot_wider-example-reshaping-to-wide-format" class="nav-link" data-scroll-target="#pivot_wider-example-reshaping-to-wide-format"><code>pivot_wider</code> Example: Reshaping to Wide Format</a></li>
-  <li><a href="#pivot_longer-example-reshaping-to-long-format" id="toc-pivot_longer-example-reshaping-to-long-format" class="nav-link" data-scroll-target="#pivot_longer-example-reshaping-to-long-format"><code>pivot_longer</code> Example: Reshaping to Long Format</a></li>
-  <li><a href="#challenge-reshaping" id="toc-challenge-reshaping" class="nav-link" data-scroll-target="#challenge-reshaping">Challenge: Reshaping</a></li>
-  </ul></li>
+  <li><a href="#contributing-guidelines" id="toc-contributing-guidelines" class="nav-link active" data-scroll-target="#contributing-guidelines">Contributing Guidelines</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lter/workshop-tidyverse/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     <div class="quarto-margin-footer"><div class="margin-footer-item">
@@ -252,200 +211,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./wrangle.html">Modules</a></li><li class="breadcrumb-item"><a href="./reshape.html">Reshape</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Reshape</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
+<section id="contributing-guidelines" class="level2">
+<h2 class="anchored" data-anchor-id="contributing-guidelines">Contributing Guidelines</h2>
+<p>When contributing to this project, please see our team’s <a href="https://github.com/lter/scicomp/blob/main/CONTRIBUTING.md">primary contributing guidelines document</a> and follow the guidance there.</p>
 
 
-</header>
-
-
-<section id="module-learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="module-learning-objectives">Module Learning Objectives</h2>
-<p>By the end of this module, you will be able to:</p>
-<ul>
-<li><u>Contrast</u> “long” data with “wide” data<br>
-</li>
-<li><u>Use</u> <code>tidyr</code>’s <code>pivot_wider</code> and <code>pivot_longer</code> functions to reshape data</li>
-</ul>
-</section>
-<section id="defining-shape" class="level2">
-<h2 class="anchored" data-anchor-id="defining-shape">Defining “Shape”</h2>
-<p>Before talking about <em>how</em> to reshape your data between wide and long format, let’s talk about <em>what</em> “shape” means in reference to data. Fundamentally, “long” data are data with more rows than columns while “wide” data tend to have more columns than rows.</p>
-<p>For example, in community ecology a “wide” dataframe could have each row being a site that researchers visited while each column could be a different species where the value in the row is the number of individuals of that species at that site. On the other hand, the <code>penguins</code> dataframe we’ve been working with so far is in “long” format because it has one row per penguin and multiple penguins are stacked up.</p>
-<p>Both wide and long format data can be useful in certain contexts and it is sometimes most intuitive to reshape data from one form to the other (and sometimes back again to the original form!).</p>
-</section>
-<section id="reshaping-data" class="level2">
-<h2 class="anchored" data-anchor-id="reshaping-data">Reshaping Data</h2>
-<p>The <code>tidyr</code> package contains the intuitively-named <code>pivot_wider</code> and <code>pivot_longer</code> for doing exactly this reshaping.</p>
-<p>To help demonstrate these two functions, let’s begin by summarizing our dataframe to make changing the shape of the dataframe more visible than it would be with the full dataframe. For example, let’s calculate the average bill length of each penguin species on each island.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Begin by naming our new data and the data they come from</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>penguins_simp <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Now group by species and island</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(species, island) <span class="sc">%&gt;%</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate average bill length</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">avg_bill_length_mm =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># And don't forget to ungroup!</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># And this is what we're left with:</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>penguins_simp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 3
-  species   island    avg_bill_length_mm
-  &lt;fct&gt;     &lt;fct&gt;                  &lt;dbl&gt;
-1 Adelie    Biscoe                  39.0
-2 Adelie    Dream                   38.5
-3 Adelie    Torgersen               39.0
-4 Chinstrap Dream                   48.8
-5 Gentoo    Biscoe                  47.5</code></pre>
-</div>
-</div>
-<p>Great! We can use this smaller data object to demonstrate reshaping more clearly. Let’s begin with an example for <code>pivot_wider</code>.</p>
-<section id="pivot_wider-example-reshaping-to-wide-format" class="level3">
-<h3 class="anchored" data-anchor-id="pivot_wider-example-reshaping-to-wide-format"><code>pivot_wider</code> Example: Reshaping to Wide Format</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Example
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>pivot_wider</code> takes long format data and reshapes it into wide format.</p>
-<p align="center">
-<img src="images/reshape-pivot-wide.png" alt="Graphic of a table with 'A' and 'B' columns being pivoted to a table with 'A', 'C', and 'D' columns and a 'B' row" width="50%">
-</p>
-<p>Let’s say that we want to take that data object and reshape it into wide format so that each island is a column and each species of penguin is a row. The contents of each cell then are going to be the average bill length values that we just calculated.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Begin by naming the objects</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>penguins_wide <span class="ot">&lt;-</span> penguins_simp <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># And now we can pivot wider with `pivot_wider`!</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> island,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values_from =</span> avg_bill_length_mm )</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look!</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>penguins_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 4
-  species   Biscoe Dream Torgersen
-  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
-1 Adelie      39.0  38.5      39.0
-2 Chinstrap   NA    48.8      NA  
-3 Gentoo      47.5  NA        NA  </code></pre>
-</div>
-</div>
-<p>Great! We now have each island as a column, each row is a penguin species, and the bill length measurement we took is included in each cell. Note that in this specific case this makes the number somewhat ambiguous so we might want to use <code>dplyr</code>’s <code>select</code> or the more specific <code>rename</code> to change the island names to be clearer that those values are bill lengths in milimeters.</p>
-</div>
-</div>
-</section>
-<section id="pivot_longer-example-reshaping-to-long-format" class="level3">
-<h3 class="anchored" data-anchor-id="pivot_longer-example-reshaping-to-long-format"><code>pivot_longer</code> Example: Reshaping to Long Format</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Example
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Now that we have a small wide format data object, we can feed it to <code>pivot_longer</code> and reshape our data into long format! <code>pivot_longer</code> has very similar syntax <em>except</em> that with <code>pivot_longer</code> you need to tell the function which columns should be reshaped.</p>
-<p><code>pivot_wider</code> on the other hand knows which columns to move around because you manually specify them in the “names_from” and “values_from” arguments.</p>
-<p align="center">
-<img src="images/reshape-pivot-long.png" alt="Graphic of a table with 'A' and 'B' columns being pivoted to a table with 'C' and 'D' columns and 'A' and 'B' rows" width="50%">
-</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Begin with our wide data</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>penguins_wide <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># And reshape back into long format</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>species,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"island_name"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"mean_bill_length_mm"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 9 × 3
-  species   island_name mean_bill_length_mm
-  &lt;fct&gt;     &lt;chr&gt;                     &lt;dbl&gt;
-1 Adelie    Biscoe                     39.0
-2 Adelie    Dream                      38.5
-3 Adelie    Torgersen                  39.0
-4 Chinstrap Biscoe                     NA  
-5 Chinstrap Dream                      48.8
-6 Chinstrap Torgersen                  NA  
-7 Gentoo    Biscoe                     47.5
-8 Gentoo    Dream                      NA  
-9 Gentoo    Torgersen                  NA  </code></pre>
-</div>
-</div>
-<p>Two quick things to note here:</p>
-<ul>
-<li>First, <code>pivot_longer</code> included the cells that were NA in the wide version of the data.
-<ul>
-<li>This default behavior is really nice so that you don’t lose any cells implicitly (though you can always <code>filter</code> them out if you don’t want them!).</li>
-</ul></li>
-<li>Second, you’ll note that in the “cols” argument I only told <code>pivot_longer</code> to <em>not</em> include the “species” column using the same notation you could use for the <code>select</code> function in the <code>dplyr</code> package.
-<ul>
-<li>This is very handy because it lets us write really concise values in the “cols” argument and the default becomes “everything <em>except</em> what was specified”.</li>
-<li>Note that we could have also said <code>cols = Biscoe, Dream, Torgersen</code> and achieved the same reshaping of the data.</li>
-</ul></li>
-</ul>
-</div>
-</div>
-</section>
-<section id="challenge-reshaping" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-reshaping">Challenge: Reshaping</h3>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Your Turn!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The code below creates a data object that includes the flipper length of all Adelie penguins; what code would you add to reshape the data so that each sex is a column with flipper lengths in the cells?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep only Adelie penguins of known sex</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate the average flipper length by island and sex</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(island, sex) <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">avg_flipper_length_mm =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ungroup (good practice to include this step!)</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  island    sex    avg_flipper_length_mm
-  &lt;fct&gt;     &lt;fct&gt;                  &lt;dbl&gt;
-1 Biscoe    female                  187.
-2 Biscoe    male                    190.
-3 Dream     female                  188.
-4 Dream     male                    192.
-5 Torgersen female                  188.
-6 Torgersen male                    195.</code></pre>
-</div>
-</div>
-</div>
-</div>
-
-
-</section>
 </section>
 
 </main> <!-- /main -->
