@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://lter.github.io/workshop-tidyverse/summarize.html</loc>
-    <lastmod>2024-09-04T16:39:48.136Z</lastmod>
+    <loc>https://lter.github.io/workshop-tidyverse/wrangle.html</loc>
+    <lastmod>2024-11-05T17:15:11.591Z</lastmod>
   </url>
   <url>
-    <loc>https://lter.github.io/workshop-tidyverse/join.html</loc>
-    <lastmod>2024-09-04T16:39:48.136Z</lastmod>
+    <loc>https://lter.github.io/workshop-tidyverse/summarize.html</loc>
+    <lastmod>2024-11-05T17:15:11.591Z</lastmod>
   </url>
   <url>
     <loc>https://lter.github.io/workshop-tidyverse/reshape.html</loc>
-    <lastmod>2024-09-04T16:39:48.136Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lter.github.io/workshop-tidyverse/visualize.html</loc>
-    <lastmod>2024-09-04T16:39:48.136Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lter.github.io/workshop-tidyverse/wrangle.html</loc>
-    <lastmod>2024-09-04T16:39:48.136Z</lastmod>
+    <lastmod>2024-11-05T17:15:11.591Z</lastmod>
   </url>
   <url>
     <loc>https://lter.github.io/workshop-tidyverse/CONTRIBUTING.html</loc>
-    <lastmod>2024-09-04T16:39:48.108Z</lastmod>
+    <lastmod>2024-11-05T17:15:11.563Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lter.github.io/workshop-tidyverse/visualize.html</loc>
+    <lastmod>2024-11-05T17:15:11.591Z</lastmod>
   </url>
   <url>
     <loc>https://lter.github.io/workshop-tidyverse/index.html</loc>
-    <lastmod>2024-09-04T16:39:48.136Z</lastmod>
+    <lastmod>2024-11-05T17:15:11.591Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lter.github.io/workshop-tidyverse/join.html</loc>
+    <lastmod>2024-11-05T17:15:11.591Z</lastmod>
   </url>
 </urlset>
