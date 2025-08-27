@@ -1,3 +1,9 @@
+## Development Version
+
+This reflects the current state of the repository. Changes from the preceding version/GitHub release are listed here as they are made.
+
+- Added Zenodo DOI and full workshop citation to README and homepage of workshop
+
 ## Version 1.1
 
 - Minor tweaks to 'back end' of site (stops rendering of non-essential files)
