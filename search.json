@@ -121,6 +121,79 @@
     ]
   },
   {
+    "objectID": "join.html",
+    "href": "join.html",
+    "title": "Join",
+    "section": "",
+    "text": "By the end of this module, you will be able to:\n\nDifferentiate dplyr’s various join functions from each other\nUse dplyr’s left_join, right_join, inner_join, full_join, and anti_join functions to manipulate two dataframes",
+    "crumbs": [
+      "Modules",
+      "Join"
+    ]
+  },
+  {
+    "objectID": "join.html#module-learning-objectives",
+    "href": "join.html#module-learning-objectives",
+    "title": "Join",
+    "section": "",
+    "text": "By the end of this module, you will be able to:\n\nDifferentiate dplyr’s various join functions from each other\nUse dplyr’s left_join, right_join, inner_join, full_join, and anti_join functions to manipulate two dataframes",
+    "crumbs": [
+      "Modules",
+      "Join"
+    ]
+  },
+  {
+    "objectID": "join.html#combining-data",
+    "href": "join.html#combining-data",
+    "title": "Join",
+    "section": "Combining data",
+    "text": "Combining data\nNow that we know how to manipulate a single dataframe, how do we manipulate multiple dataframes? If we have multiple sources of data and we want to combine them together into one dataframe or table, we can join them through any shared column(s)! Data you’ll be joining can be called “relational data”, because there is some kind of relationship between the dataframes that you’ll be leveraging. In the Tidyverse, combining data that has a relationship is called “joining”. Let’s look at some of dplyr’s many join functions!\nIn each of the following join functions, you provide two dataframes, the one you arbitrarily provide first is called the “left” dataframe while the other is called the “right” dataframe. This is important because each of the different join functions brings the columns from one of the dataframes into the other depending on (1) which dataframe is left and which is right and (2) what type of join you specify.\nThis becomes somewhat more intuitive when looking at tangible examples so let’s prepare some data to join in different ways!\n\njoin Data Preparation\nFor demonstration purposes, let’s add a new column called record_number to our penguins data and call the new dataframe penguins_tidy. As you can see below, each row is now numbered from 1 to the length of the dataframe.\n\n# Add a column called `record_number` to our penguins dataset\npenguins_tidy &lt;- penguins %&gt;%\n    dplyr::mutate(record_number = 1:n(), .before = dplyr::everything())\n\ndplyr::glimpse(penguins_tidy)\n\nRows: 344\nColumns: 9\n$ record_number     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nThe palmerpenguins package also has a “penguins_raw” dataset with additional, raw information on the same penguins, such as their sampling region, unique identifier, and the date when their nest was observed. Again, for demonstration purposes, let’s add a new column called record_number and call this new dataframe penguins_extra.\n\n# Add a column called `record_number` to our raw penguins dataset\npenguins_extra &lt;- penguins_raw %&gt;%\n  dplyr::mutate(record_number = 1:n()) %&gt;%\n  # Also keep only desired columns to avoid unnecessary complexity\n  dplyr::select(record_number, Region, `Individual ID`, `Date Egg`)\n\ndplyr::glimpse(penguins_extra)\n\nRows: 344\nColumns: 4\n$ record_number   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,…\n$ Region          &lt;chr&gt; \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anv…\n$ `Individual ID` &lt;chr&gt; \"N1A1\", \"N1A2\", \"N2A1\", \"N2A2\", \"N3A1\", \"N3A2\", \"N4A1\"…\n$ `Date Egg`      &lt;date&gt; 2007-11-11, 2007-11-11, 2007-11-16, 2007-11-16, 2007-…\n\n\nNow that we have two dataframes that both have a column called record_number, we can join them together to combine information in various ways!\nAlso, note that if column names include spaces (as in Individual ID and Date Egg) they need to have a “backtick” (`) on either side. On your keyboard, a backtick (`) is on the left just below the “escape” key, and shares a button with the tilde (~).\n\n\nleft_join Example: Prioritize the “Left” Dataframe\n\n\n\n\n\n\nExample\n\n\n\nIn a left_join, we bring the columns from the right dataframe that match rows found in the specified column(s) of the left dataframe.\n\n\n\nWe can specify the column that we want to join based on with by = .... If we don’t provide this argument, then dplyr will automatically join on all matching columns between the left and right dataframes. In our case, we want to left_join by record_number.\nTo better demonstrate that only rows found in the left dataframe will be joined from the right dataframe, we’ll use the pipe %&gt;% to filter the left dataframe before joining.\n\n# Left-join the two dataframes together on the shared column!\npenguins_left_joined &lt;- penguins_tidy %&gt;%\n  dplyr::filter(record_number &lt; 5) %&gt;%\n  dplyr::left_join(y = penguins_extra, by = \"record_number\")\n\ndplyr::glimpse(penguins_left_joined)\n\nRows: 4\nColumns: 12\n$ record_number     &lt;int&gt; 1, 2, 3, 4\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA\n$ sex               &lt;fct&gt; male, female, female, NA\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007\n$ Region            &lt;chr&gt; \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\"\n$ `Individual ID`   &lt;chr&gt; \"N1A1\", \"N1A2\", \"N2A1\", \"N2A2\"\n$ `Date Egg`        &lt;date&gt; 2007-11-11, 2007-11-11, 2007-11-16, 2007-11-16\n\n\nWhat we have in the end is penguins_left_joined, a dataframe with information from both penguins_tidy and penguins_extra! All of the rows in our filtered penguins_tidy are kept but only the rows from penguins_extra that have a matching record_number in penguins_tidy are included.\n\n\n\n\nright_join Example: Prioritize the “Right” Dataframe\n\n\n\n\n\n\nExample\n\n\n\nIn a right_join, we bring rows from the left dataframe into the right dataframe based on the values in the specified column(s) of the right dataframe.\n\n\n\nAs the names imply, a right_join is the opposite of a left_join.\n\n\n\n\ninner_join Example: Keep Rows Found in Both Dataframes\n\n\n\n\n\n\nExample\n\n\n\nIn an inner_join, we keep only the rows where the values in the column we are joining by are found in both dataframes.\n\n\n\nThis can be really useful when one of the dataframes includes supplementary data that has incomplete coverage on the other dataframe and you want to simultaneously combine the dataframes and remove the inevitable NAs that will be created.\nFor example, imagine that you have a dataframe of 100 study sites with information on plant growth and a second dataframe of soil chemistry information. Your grant budget was really tight though so you needed to prioritize sample processing and you only have soil chemistry for 20 of the sites where you have plant growth data.\nIf you use inner_join on your plant growth and soil chemistry datasets, you will create a single dataframe with both chemistry and plant data that only has the sites (i.e., rows) where you had data for both. This dataframe then would likely be ready for analysis because you’d have complete data for every site in the new joined dataframe!\nNote that in an inner_join it doesn’t matter which dataframe is “left” and which is “right” because either way you’re only keeping the rows that are found in both dataframes.\n\n\n\n\nfull_join Example: Combine All Data in Both Dataframes\n\n\n\n\n\n\nExample\n\n\n\nIn a full_join, we keep all values and all rows.\n\n\n\nA full_join is “smart” enough to fill with NAs in all rows that don’t match between the two dataframes. Also, just like an inner_join, a full_join doesn’t care about which dataframe is “left” and which is “right” because all columns are getting combined regardless of which is left vs. right.\n\n\n\n\nanti_join Example: Keep Only Columns that Aren’t Shared\n\n\n\n\n\n\nExample\n\n\n\nIn an anti_join, we return rows of the left dataframe that do not have a match in the right dataframe. This can be used to see what will not be included in a join.\n\n\n\nOne case where an anti_join is particularly useful is that of “text mining” where you have one dataframe with a column of individual words that you’ve split apart from a larger block of free text. If you also have a dataframe of one column that contains words that you want to remove from your “actual” data (e.g., “and”, “not”, “I”, “me”, etc.), you can anti_join the two dataframes to quickly remove all of those unwanted words from your text mining dataframe.\n\n\n\n\nAdditional Notes\n\nIf we want to join by more than one matching column, we can specify multiple columns with a vector like so: by = c(\"column1\", \"column2\").\nWe can also use a named vector, by = c(\"column_a\" = \"COLUMN_A\") to match on columns that have different names in each dataframe.",
+    "crumbs": [
+      "Modules",
+      "Join"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Overview",
+    "section": "",
+    "text": "This workshop provides an overview of many of the packages included in the Tidyverse suite of packages for the R programming language. The Tidyverse is a veritable universe of tools though that no single workshop could hope to cover so we are focusing here on an introductory approach that focuses primarily on some fundamentals to tidying data in R. We are always happy to improve workshop content so please don’t hesitate to post an Issue on our GitHub repository if you see clear areas for improvement!\n\nTo maximize the value of this workshop to you, we recommend that you take the following steps before the day of the workshop. If anything is unclear, feel free to reach out to us; our contact information can be found here",
+    "crumbs": [
+      "Workshop Home"
+    ]
+  },
+  {
+    "objectID": "index.html#workshop-preparation",
+    "href": "index.html#workshop-preparation",
+    "title": "Overview",
+    "section": "Workshop Preparation",
+    "text": "Workshop Preparation\nFor those of you with a dedicated IT team that has sole power to install software on your computer: you may need to contact them before the workshop to do the installation bits of the prep steps we outline below.\n\n1. Install R\nInstall R. If you already have R, check that you have at least version 4.0.0 by running the following code:\n\nversion$version.string\n\nIf your version starts with a 3 (e.g., the above code returns “R version 3…”), please update R to make sure all packages behave as expected.\n\n\n2. Install RStudio\nOnce you have R (ver. ≥4.0), install RStudio. If you already have RStudio installed, you may want to make sure that you’re using a recent version to take advantage of some quality of life improvements that are broadly useful.\n\n\n3. Install Some R Packages\nInstall the tidyverse and palmerpenguins R packages using the following code:\n\ninstall.packages(\"librarian\")\nlibrarian::shelf(tidyverse, palmerpenguins)\n\nPlease run the above code even if you already have these packages to update these packages and ensure that your code aligns with the examples and challenges introduced during the workshop.\n\n\n4. Celebrate!\nAfter following all the previous preparation steps, your setup should now be complete.",
+    "crumbs": [
+      "Workshop Home"
+    ]
+  },
+  {
+    "objectID": "index.html#example-data---penguins",
+    "href": "index.html#example-data---penguins",
+    "title": "Overview",
+    "section": "Example Data - Penguins",
+    "text": "Example Data - Penguins\nThe data we’ll be using for this workshop comes from the palmerpenguins package, maintained by Allison Horst. The “penguins” dataset from this package contains size measurements for adult foraging penguins near Palmer Station, Antarctica. Data were collected and made available by Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program. Let’s take a look at it!\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nThe “penguins” dataset has 344 rows and 8 columns.\nThe columns are as follows:\n\nspecies: a factor denoting penguin species (Adélie, Chinstrap and Gentoo)\nisland: a factor denoting island in Palmer Archipelago, Antarctica (Biscoe, Dream or Torgersen)\nbill_length_mm: a number denoting bill length (millimeters)\nbill_depth_mm: a number denoting bill depth (millimeters)\nflipper_length_mm: an integer denoting flipper length (millimeters)\nbody_mass_g: an integer denoting body mass (grams)\nsex: a factor denoting penguin sex (female, male)\nyear: an integer denoting the study year (2007, 2008, or 2009)\n\nThis dataset is an example of tidy data, which means that each variable is in its own column and each observation is in its own row. Generally speaking, functions from packages in the Tidyverse expect tidy data though they can be used in some cases to help get data into tidy format! Regardless, the penguins dataset is what we’ll use for all examples in this workshop so be sure that you install the palmerpenguins R package. The examples on this page were adapted from Allison Horst’s dplyr tutorial!",
+    "crumbs": [
+      "Workshop Home"
+    ]
+  },
+  {
+    "objectID": "index.html#websites-to-visit",
+    "href": "index.html#websites-to-visit",
+    "title": "Overview",
+    "section": "Websites to Visit",
+    "text": "Websites to Visit\n\nSupplemental Material\nWhile not technically necessary to attend the workshop, if you’d like you can see the content that created the workshop website you are viewing by visiting our GitHub repository here.\nAlso, check out NCEAS’ Learning Hub for a complete list of workshops and trainings offered by NCEAS.",
+    "crumbs": [
+      "Workshop Home"
+    ]
+  },
+  {
     "objectID": "reshape.html",
     "href": "reshape.html",
     "title": "Reshape",
@@ -163,20 +236,6 @@
       "Modules",
       "Reshape"
     ]
-  },
-  {
-    "objectID": "CONTRIBUTING.html",
-    "href": "CONTRIBUTING.html",
-    "title": "SciComp Workshop - Coding in the Tidyverse",
-    "section": "",
-    "text": "When contributing to this project, please see our team’s primary contributing guidelines document and follow the guidance there."
-  },
-  {
-    "objectID": "CONTRIBUTING.html#contributing-guidelines",
-    "href": "CONTRIBUTING.html#contributing-guidelines",
-    "title": "SciComp Workshop - Coding in the Tidyverse",
-    "section": "",
-    "text": "When contributing to this project, please see our team’s primary contributing guidelines document and follow the guidance there."
   },
   {
     "objectID": "visualize.html",
@@ -275,79 +334,6 @@
     "crumbs": [
       "Modules",
       "Visualize"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Overview",
-    "section": "",
-    "text": "This workshop provides an overview of many of the packages included in the Tidyverse suite of packages for the R programming language. The Tidyverse is a veritable universe of tools though that no single workshop could hope to cover so we are focusing here on an introductory approach that focuses primarily on some fundamentals to tidying data in R. We are always happy to improve workshop content so please don’t hesitate to post an Issue on our GitHub repository if you see clear areas for improvement!\n\nTo maximize the value of this workshop to you, we recommend that you take the following steps before the day of the workshop. If anything is unclear, feel free to reach out to us; our contact information can be found here",
-    "crumbs": [
-      "Workshop Home"
-    ]
-  },
-  {
-    "objectID": "index.html#workshop-preparation",
-    "href": "index.html#workshop-preparation",
-    "title": "Overview",
-    "section": "Workshop Preparation",
-    "text": "Workshop Preparation\nFor those of you with a dedicated IT team that has sole power to install software on your computer: you may need to contact them before the workshop to do the installation bits of the prep steps we outline below.\n\n1. Install R\nInstall R. If you already have R, check that you have at least version 4.0.0 by running the following code:\n\nversion$version.string\n\nIf your version starts with a 3 (e.g., the above code returns “R version 3…”), please update R to make sure all packages behave as expected.\n\n\n2. Install RStudio\nOnce you have R (ver. ≥4.0), install RStudio. If you already have RStudio installed, you may want to make sure that you’re using a recent version to take advantage of some quality of life improvements that are broadly useful.\n\n\n3. Install Some R Packages\nInstall the tidyverse and palmerpenguins R packages using the following code:\n\ninstall.packages(\"librarian\")\nlibrarian::shelf(tidyverse, palmerpenguins)\n\nPlease run the above code even if you already have these packages to update these packages and ensure that your code aligns with the examples and challenges introduced during the workshop.\n\n\n4. Celebrate!\nAfter following all the previous preparation steps, your setup should now be complete.",
-    "crumbs": [
-      "Workshop Home"
-    ]
-  },
-  {
-    "objectID": "index.html#example-data---penguins",
-    "href": "index.html#example-data---penguins",
-    "title": "Overview",
-    "section": "Example Data - Penguins",
-    "text": "Example Data - Penguins\nThe data we’ll be using for this workshop comes from the palmerpenguins package, maintained by Allison Horst. The “penguins” dataset from this package contains size measurements for adult foraging penguins near Palmer Station, Antarctica. Data were collected and made available by Dr. Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER) Program. Let’s take a look at it!\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nThe “penguins” dataset has 344 rows and 8 columns.\nThe columns are as follows:\n\nspecies: a factor denoting penguin species (Adélie, Chinstrap and Gentoo)\nisland: a factor denoting island in Palmer Archipelago, Antarctica (Biscoe, Dream or Torgersen)\nbill_length_mm: a number denoting bill length (millimeters)\nbill_depth_mm: a number denoting bill depth (millimeters)\nflipper_length_mm: an integer denoting flipper length (millimeters)\nbody_mass_g: an integer denoting body mass (grams)\nsex: a factor denoting penguin sex (female, male)\nyear: an integer denoting the study year (2007, 2008, or 2009)\n\nThis dataset is an example of tidy data, which means that each variable is in its own column and each observation is in its own row. Generally speaking, functions from packages in the Tidyverse expect tidy data though they can be used in some cases to help get data into tidy format! Regardless, the penguins dataset is what we’ll use for all examples in this workshop so be sure that you install the palmerpenguins R package. The examples on this page were adapted from Allison Horst’s dplyr tutorial!",
-    "crumbs": [
-      "Workshop Home"
-    ]
-  },
-  {
-    "objectID": "index.html#websites-to-visit",
-    "href": "index.html#websites-to-visit",
-    "title": "Overview",
-    "section": "Websites to Visit",
-    "text": "Websites to Visit\n\nSupplemental Material\nWhile not technically necessary to attend the workshop, if you’d like you can see the content that created the workshop website you are viewing by visiting our GitHub repository here.\nAlso, check out NCEAS’ Learning Hub for a complete list of workshops and trainings offered by NCEAS.",
-    "crumbs": [
-      "Workshop Home"
-    ]
-  },
-  {
-    "objectID": "join.html",
-    "href": "join.html",
-    "title": "Join",
-    "section": "",
-    "text": "By the end of this module, you will be able to:\n\nDifferentiate dplyr’s various join functions from each other\nUse dplyr’s left_join, right_join, inner_join, full_join, and anti_join functions to manipulate two dataframes",
-    "crumbs": [
-      "Modules",
-      "Join"
-    ]
-  },
-  {
-    "objectID": "join.html#module-learning-objectives",
-    "href": "join.html#module-learning-objectives",
-    "title": "Join",
-    "section": "",
-    "text": "By the end of this module, you will be able to:\n\nDifferentiate dplyr’s various join functions from each other\nUse dplyr’s left_join, right_join, inner_join, full_join, and anti_join functions to manipulate two dataframes",
-    "crumbs": [
-      "Modules",
-      "Join"
-    ]
-  },
-  {
-    "objectID": "join.html#combining-data",
-    "href": "join.html#combining-data",
-    "title": "Join",
-    "section": "Combining data",
-    "text": "Combining data\nNow that we know how to manipulate a single dataframe, how do we manipulate multiple dataframes? If we have multiple sources of data and we want to combine them together into one dataframe or table, we can join them through any shared column(s)! Data you’ll be joining can be called “relational data”, because there is some kind of relationship between the dataframes that you’ll be leveraging. In the Tidyverse, combining data that has a relationship is called “joining”. Let’s look at some of dplyr’s many join functions!\nIn each of the following join functions, you provide two dataframes, the one you arbitrarily provide first is called the “left” dataframe while the other is called the “right” dataframe. This is important because each of the different join functions brings the columns from one of the dataframes into the other depending on (1) which dataframe is left and which is right and (2) what type of join you specify.\nThis becomes somewhat more intuitive when looking at tangible examples so let’s prepare some data to join in different ways!\n\njoin Data Preparation\nFor demonstration purposes, let’s add a new column called record_number to our penguins data and call the new dataframe penguins_tidy. As you can see below, each row is now numbered from 1 to the length of the dataframe.\n\n# Add a column called `record_number` to our penguins dataset\npenguins_tidy &lt;- penguins %&gt;%\n    dplyr::mutate(record_number = 1:n(), .before = dplyr::everything())\n\ndplyr::glimpse(penguins_tidy)\n\nRows: 344\nColumns: 9\n$ record_number     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nThe palmerpenguins package also has a “penguins_raw” dataset with additional, raw information on the same penguins, such as their sampling region, unique identifier, and the date when their nest was observed. Again, for demonstration purposes, let’s add a new column called record_number and call this new dataframe penguins_extra.\n\n# Add a column called `record_number` to our raw penguins dataset\npenguins_extra &lt;- penguins_raw %&gt;%\n  dplyr::mutate(record_number = 1:n()) %&gt;%\n  # Also keep only desired columns to avoid unnecessary complexity\n  dplyr::select(record_number, Region, `Individual ID`, `Date Egg`)\n\ndplyr::glimpse(penguins_extra)\n\nRows: 344\nColumns: 4\n$ record_number   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,…\n$ Region          &lt;chr&gt; \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anv…\n$ `Individual ID` &lt;chr&gt; \"N1A1\", \"N1A2\", \"N2A1\", \"N2A2\", \"N3A1\", \"N3A2\", \"N4A1\"…\n$ `Date Egg`      &lt;date&gt; 2007-11-11, 2007-11-11, 2007-11-16, 2007-11-16, 2007-…\n\n\nNow that we have two dataframes that both have a column called record_number, we can join them together to combine information in various ways!\nAlso, note that if column names include spaces (as in Individual ID and Date Egg) they need to have a “backtick” (`) on either side. On your keyboard, a backtick (`) is on the left just below the “escape” key, and shares a button with the tilde (~).\n\n\nleft_join Example: Prioritize the “Left” Dataframe\n\n\n\n\n\n\nExample\n\n\n\nIn a left_join, we bring the columns from the right dataframe that match rows found in the specified column(s) of the left dataframe.\n\n\n\nWe can specify the column that we want to join based on with by = .... If we don’t provide this argument, then dplyr will automatically join on all matching columns between the left and right dataframes. In our case, we want to left_join by record_number.\nTo better demonstrate that only rows found in the left dataframe will be joined from the right dataframe, we’ll use the pipe %&gt;% to filter the left dataframe before joining.\n\n# Left-join the two dataframes together on the shared column!\npenguins_left_joined &lt;- penguins_tidy %&gt;%\n  dplyr::filter(record_number &lt; 5) %&gt;%\n  dplyr::left_join(y = penguins_extra, by = \"record_number\")\n\ndplyr::glimpse(penguins_left_joined)\n\nRows: 4\nColumns: 12\n$ record_number     &lt;int&gt; 1, 2, 3, 4\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA\n$ sex               &lt;fct&gt; male, female, female, NA\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007\n$ Region            &lt;chr&gt; \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\"\n$ `Individual ID`   &lt;chr&gt; \"N1A1\", \"N1A2\", \"N2A1\", \"N2A2\"\n$ `Date Egg`        &lt;date&gt; 2007-11-11, 2007-11-11, 2007-11-16, 2007-11-16\n\n\nWhat we have in the end is penguins_left_joined, a dataframe with information from both penguins_tidy and penguins_extra! All of the rows in our filtered penguins_tidy are kept but only the rows from penguins_extra that have a matching record_number in penguins_tidy are included.\n\n\n\n\nright_join Example: Prioritize the “Right” Dataframe\n\n\n\n\n\n\nExample\n\n\n\nIn a right_join, we bring rows from the left dataframe into the right dataframe based on the values in the specified column(s) of the right dataframe.\n\n\n\nAs the names imply, a right_join is the opposite of a left_join.\n\n\n\n\ninner_join Example: Keep Rows Found in Both Dataframes\n\n\n\n\n\n\nExample\n\n\n\nIn an inner_join, we keep only the rows where the values in the column we are joining by are found in both dataframes.\n\n\n\nThis can be really useful when one of the dataframes includes supplementary data that has incomplete coverage on the other dataframe and you want to simultaneously combine the dataframes and remove the inevitable NAs that will be created.\nFor example, imagine that you have a dataframe of 100 study sites with information on plant growth and a second dataframe of soil chemistry information. Your grant budget was really tight though so you needed to prioritize sample processing and you only have soil chemistry for 20 of the sites where you have plant growth data.\nIf you use inner_join on your plant growth and soil chemistry datasets, you will create a single dataframe with both chemistry and plant data that only has the sites (i.e., rows) where you had data for both. This dataframe then would likely be ready for analysis because you’d have complete data for every site in the new joined dataframe!\nNote that in an inner_join it doesn’t matter which dataframe is “left” and which is “right” because either way you’re only keeping the rows that are found in both dataframes.\n\n\n\n\nfull_join Example: Combine All Data in Both Dataframes\n\n\n\n\n\n\nExample\n\n\n\nIn a full_join, we keep all values and all rows.\n\n\n\nA full_join is “smart” enough to fill with NAs in all rows that don’t match between the two dataframes. Also, just like an inner_join, a full_join doesn’t care about which dataframe is “left” and which is “right” because all columns are getting combined regardless of which is left vs. right.\n\n\n\n\nanti_join Example: Keep Only Columns that Aren’t Shared\n\n\n\n\n\n\nExample\n\n\n\nIn an anti_join, we return rows of the left dataframe that do not have a match in the right dataframe. This can be used to see what will not be included in a join.\n\n\n\nOne case where an anti_join is particularly useful is that of “text mining” where you have one dataframe with a column of individual words that you’ve split apart from a larger block of free text. If you also have a dataframe of one column that contains words that you want to remove from your “actual” data (e.g., “and”, “not”, “I”, “me”, etc.), you can anti_join the two dataframes to quickly remove all of those unwanted words from your text mining dataframe.\n\n\n\n\nAdditional Notes\n\nIf we want to join by more than one matching column, we can specify multiple columns with a vector like so: by = c(\"column1\", \"column2\").\nWe can also use a named vector, by = c(\"column_a\" = \"COLUMN_A\") to match on columns that have different names in each dataframe.",
-    "crumbs": [
-      "Modules",
-      "Join"
     ]
   }
 ]

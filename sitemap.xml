@@ -2,30 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lter.github.io/workshop-tidyverse/wrangle.html</loc>
-    <lastmod>2024-11-19T20:11:50.957Z</lastmod>
+    <lastmod>2025-08-27T16:02:21.307Z</lastmod>
   </url>
   <url>
     <loc>https://lter.github.io/workshop-tidyverse/summarize.html</loc>
-    <lastmod>2024-11-19T20:11:50.953Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lter.github.io/workshop-tidyverse/reshape.html</loc>
-    <lastmod>2024-11-19T20:11:50.953Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lter.github.io/workshop-tidyverse/CONTRIBUTING.html</loc>
-    <lastmod>2024-11-19T20:11:50.925Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lter.github.io/workshop-tidyverse/visualize.html</loc>
-    <lastmod>2024-11-19T20:11:50.957Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lter.github.io/workshop-tidyverse/index.html</loc>
-    <lastmod>2024-11-19T20:11:50.953Z</lastmod>
+    <lastmod>2025-08-27T16:02:21.307Z</lastmod>
   </url>
   <url>
     <loc>https://lter.github.io/workshop-tidyverse/join.html</loc>
-    <lastmod>2024-11-19T20:11:50.953Z</lastmod>
+    <lastmod>2025-08-27T16:02:21.307Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lter.github.io/workshop-tidyverse/index.html</loc>
+    <lastmod>2025-08-27T16:02:21.306Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lter.github.io/workshop-tidyverse/reshape.html</loc>
+    <lastmod>2025-08-27T16:02:21.307Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lter.github.io/workshop-tidyverse/visualize.html</loc>
+    <lastmod>2025-08-27T16:02:21.307Z</lastmod>
   </url>
 </urlset>
