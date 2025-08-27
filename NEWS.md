@@ -1,3 +1,7 @@
+## Version 1.1
+
+- Minor tweaks to 'back end' of site (stops rendering of non-essential files)
+
 ## Version 1.0
 
 This is the first functioning version of the workshop in this GitHub Organization. Previously the workshop was hosted in a different repository but we've chosen to migrate it here from now on.
