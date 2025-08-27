@@ -10,6 +10,12 @@ This workshop provides an overview of many of the packages included in the Tidyv
 
 To maximize the value of this workshop to you, we recommend that you take the following steps **before the day of the workshop**. If anything is unclear, feel free to reach out to us; our contact information can be found [here](https://lter.github.io/scicomp/staff.html)
 
+### Citing These Materials
+
+If you'd like to cite these materials, please use the following citation:
+
+> Lyon, N.J., Chen, A., and Brun, J. (2025). Coding in R's Tidyverse (v1.1). Zenodo. [https://doi.org/10.5281/zenodo.16967689](https://doi.org/10.5281/zenodo.16967689)
+
 ## Workshop Preparation
 
 **For those of you with a dedicated IT team that has sole power to install software on your computer**: you may need to contact them before the workshop to do the installation bits of the prep steps we outline below.
